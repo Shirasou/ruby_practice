@@ -1,5 +1,5 @@
 # 表記の違いの許容
-text = <<TEXT
+text = <<-TEXT
 クープバゲットのパンは美味しかった。
 今日はクープ バゲットさんに行きました。
 クープ　バゲットのパンは最高。
@@ -13,7 +13,7 @@ TEXT
 puts text.split(/\n/).grep(/クープ.?バ[ゲケ]ット/)
 
 # HTMLタグをCSVへ変換する
-html = <<HTML
+html = <<-HTML
 <select name="game_console">
 <option value="none"></option>
 <option value="wii_u">Wii U</option>
@@ -39,7 +39,7 @@ puts replaced
 replaced = html.gsub(/<option value="(\w+)"(?: selected)?>(.*)<\/option>/, '\1\2')
 puts replaced
 
-html2 = <<HTML
+html2 = <<-HTML
 <select name="game_console">
 <option value="none"></option>
 <option value="wii_u">Wii U</option><option value="ps4">プレステ4</option>
