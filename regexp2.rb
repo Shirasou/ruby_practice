@@ -59,6 +59,8 @@ puts replaced
 replaced = html2.gsub(/<option value="(\w+)"(?: selected)?>(.*?)<\/option>/, '\1\2')
 puts replaced
 
+
+# まとめ
 # ? は「直前の文字が1個、または無し」を表す
 # . は「任意の1文字」を表す
 # + は「直前の文字が1個以上」を表す
