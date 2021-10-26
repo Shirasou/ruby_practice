@@ -53,7 +53,60 @@ class User
       'Hi!'
     end
   end
+
+  # ここから下はpublicメソッドになる
+  public
+  def fine
+    put "Fine"
+  end
+
+  def foo
+    'foo'
+  end
+
+  def bar
+    'bar'
+  end
+
+  # fooとbarをprivateメソッドに変更する
+  private :foo, :bar
+
+  # bazはpublicメソッド
+  def baz
+    'baz'
+  end
 end
 # クラスメソッドはprivateメソッドにならない
 puts User.hello
-puts User.hi
+user = User.new
+# puts user.hi <= NoMethodError
+puts user.baz
+# puts user.foo <= NoMethodError
+# puts user.bar <= NoMethodError
+
+class Public
+  # weightは外部に公開しない
+  attr_reader :name
+
+  def initialize(name,weight)
+    @name = name
+    @weight = weight
+  end
+
+  # 自分がother_publicより重い場合はtrue
+  def heavier_than?(other_public)
+    other_public.weight < @weight
+  end
+
+  # 外部には公開したくないが、同じクラスやサブクラスの中であればレシーバ付きで呼び出せるようにしたい場合に、protectedを使う
+  protected
+  # protectedメソッドなので同じクラスがサブクラスであればレシーバ付きで呼び出せる
+  def weight
+    @weight
+  end
+end
+alice = Public.new('Alice', 50)
+bob = Public.new('Bob', 60)
+puts alice.heavier_than?(bob)
+puts bob.heavier_than?(alice)
+# alice.weight <= NoMethodError
